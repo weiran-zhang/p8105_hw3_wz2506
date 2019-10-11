@@ -60,6 +60,21 @@ instacart %>%
 
 ```
 
+`From the dataset of aisle_id and number of items over 10000, we can see that the aisle with aisle_id = 83 is the aisle with most items oredered from.`
+
+```{r}
+##Table of three most popular items in the three specific aisles
+library(p8105.datasets)
+data("instacart")
+instacart %>%
+  filter(aisle %in% c("baking ingredients", "dog food care", "packaged vegetables fruits")) %>%
+  group_by(aisle, product_name) %>%
+  summarize(n = n()) %>%
+  filter(min_rank(desc(n)) < 4 )%>%
+  knitr::kable(digits = 1)
+
+```
+
 
 
 
