@@ -125,6 +125,41 @@ tidy_data = brfss_smart2010 %>%
 
 ```{r}
 
+##states that observed at 7 or more locations in year 2002
+brfss_smart2010 %>%
+  filter(Topic == "Overall Health", 
+         Response %in% c("Excellent", "Very good", "Good", "Fair", "Poor"), 
+         Year == "2002") %>%
+  group_by(Locationdesc) %>%
+  separate(Locationdesc, c("state","county"), sep = "-") %>%
+  group_by(state) %>%
+  summarize(n = n()) %>%
+  mutate(
+    observed = case_when(
+      n >= 7 ~ "observed",
+      n < 7 ~ "not_observed",
+      TRUE     ~ ""
+    )) %>%
+  filter(observed == "observed") %>%
+  group_by(observed)
+
+##states that observed at 7 or more locations in year 2010
+brfss_smart2010 %>%
+  filter(Topic == "Overall Health", 
+         Response %in% c("Excellent", "Very good", "Good", "Fair", "Poor"), 
+         Year == "2010") %>%
+  group_by(Locationdesc) %>%
+  separate(Locationdesc, c("state","county"), sep = "-") %>%
+  group_by(state) %>%
+  summarize(n = n()) %>%
+  mutate(
+    observed = case_when(
+      n >= 7 ~ "observed",
+      n < 7 ~ "not_observed",
+      TRUE     ~ ""
+    )) %>%
+  filter(observed == "observed") %>%
+  group_by(observed)
 
 ```
 
