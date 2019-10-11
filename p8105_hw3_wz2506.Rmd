@@ -15,7 +15,23 @@ library(forcats)
 
 ```{r}
 library(p8105.datasets)
-data("instacart")
+data("instacart") ##Load data instacart
 
 ```
+
+```{r}
+##How many aisle in total
+max(pull(instacart, aisle_id))
+min(pull(instacart, aisle_id))
+
+##wrangle the table to aisle_id and number of items ordered from each aisle
+instacart = instacart %>%
+  group_by(aisle_id) %>%
+  summarize(n = n())
+
+
+```
+
+
+
 
