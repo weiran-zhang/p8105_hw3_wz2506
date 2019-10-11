@@ -175,6 +175,18 @@ brfss_smart2010 %>%
 
 ```
 
+```{r}
+
+##Two-panel plots showing distribution of data_value
+tidy_data %>%
+  filter(Year %in% c(2006, 2010), 
+         Locationabbr == "NY") %>%
+  ggplot(aes(x = Response, y = Data_value)) +
+  geom_boxplot() + 
+  facet_grid(~Year) +
+  viridis::scale_fill_viridis(discrete = TRUE)
+```
+
 
 
 
