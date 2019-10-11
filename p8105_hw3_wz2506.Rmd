@@ -112,6 +112,22 @@ data("brfss_smart2010")
 
 ```
 
+```{r}
+
+##Data cleaning following the instructions
+tidy_data = brfss_smart2010 %>%
+  filter(Topic == "Overall Health", 
+         Response %in% c("Excellent", "Very good", "Good", "Fair", "Poor")) %>%
+  mutate(Response = as.factor(Response)) %>%
+  mutate(Response = forcats::fct_relevel(Response, c("Excellent","Very Good","Good","Fair","Poor"))) %>%
+  arrange(Response)
+```
+
+```{r}
+
+
+```
+
 
 
 
