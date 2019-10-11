@@ -13,6 +13,9 @@ library(viridis)
 library(forcats)
 ```
 
+
+##Problem 1
+
 ```{r}
 library(p8105.datasets)
 data("instacart") ##Load data instacart
@@ -97,6 +100,15 @@ instacart %>%
     names_from = order_dow,
     values_from = meanhour) %>%
   knitr::kable(digits = 1)
+
+```
+
+##Problem 2
+
+```{r}
+##Load BRFSS dataset
+library(p8105.datasets)
+data("brfss_smart2010")
 
 ```
 
