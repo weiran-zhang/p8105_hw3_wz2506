@@ -14,7 +14,8 @@ library(forcats)
 ```
 
 ```{r}
-
+library(p8105.datasets)
+data("instacart")
 
 ```
 
