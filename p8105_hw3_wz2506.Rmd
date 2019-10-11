@@ -187,6 +187,18 @@ tidy_data %>%
   viridis::scale_fill_viridis(discrete = TRUE)
 ```
 
+##Problem 3
+
+```{r}
+
+##Load accel dataset
+accel = read_csv(file = "/Users/weiranzhang/Downloads/p8105_hw3_wz2506/accel_data.csv") %>%
+  mutate(weekday_vs_weekend =
+           ifelse(day %in% c("Saturnday","Sunday"), "Weekend", "Weekday"))
+  
+
+```
+
 
 
 
