@@ -163,6 +163,18 @@ brfss_smart2010 %>%
 
 ```
 
+```{r}
+##“spaghetti” plot
+brfss_smart2010 %>%
+  select(Year, Response, Locationabbr, Data_value) %>%
+  filter(Response == "Excellent") %>%
+  group_by(Locationabbr, Year) %>%
+  summarize(mean_data = mean(Data_value)) %>%
+  ggplot(aes(x = Year, y = mean_data, color = Locationabbr)) +
+  geom_point() + geom_line() 
+
+```
+
 
 
 
