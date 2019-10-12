@@ -36,6 +36,7 @@ instacart = instacart %>%
 ```
 `Range of aisle_id is from 1 to 134, so there are 134 aisles in total.`
 
+
 ```{r}
 ##dataset of aisle_id and number of items ordered from the aisles over 10000 to check for the aisle with the most items ordered from
 instacart %>%
@@ -78,8 +79,9 @@ instacart %>%
 
 ```
 
-```{r}
+`So the three most popular items in aisle of baking ingredient are cane sugar(336), light brown sugar(499) and pure baking soda(387), in aisle of dog food care are organix chicken & brown rice recipe(28), small dog biscuits and snack sticks chicken(26) & rice recipe dog(30), in aisle packaged vegetables fruits are organic baby spinach(9784), organic blueberries(4966) and organic raspberries(5546). `
 
+```{r}
 ##Table of mean hour of day
 library(p8105.datasets)
 data("instacart")
@@ -103,6 +105,10 @@ instacart %>%
 
 ```
 
+`So from the table of mean hour of order, we can see that Wednesday it tooks longer to order for both Coffee ice Cream and Pink Lady Apples. But the mean hours are all about between 11-15 hours. `
+
+`There are 15 variables in this instacart dataset and 1384617 observations in total. Key variables including aisle, aisle_id, product_name, order_dow, order_hour_of_hour.`
+
 ##Problem 2
 
 ```{r}
@@ -113,7 +119,6 @@ data("brfss_smart2010")
 ```
 
 ```{r}
-
 ##Data cleaning following the instructions
 tidy_data = brfss_smart2010 %>%
   filter(Topic == "Overall Health", 
@@ -124,7 +129,6 @@ tidy_data = brfss_smart2010 %>%
 ```
 
 ```{r}
-
 ##states that observed at 7 or more locations in year 2002
 brfss_smart2010 %>%
   filter(Topic == "Overall Health", 
@@ -176,7 +180,6 @@ brfss_smart2010 %>%
 ```
 
 ```{r}
-
 ##Two-panel plots showing distribution of data_value
 tidy_data %>%
   filter(Year %in% c(2006, 2010), 
@@ -185,27 +188,24 @@ tidy_data %>%
   geom_boxplot() + 
   facet_grid(~Year) +
   viridis::scale_fill_viridis(discrete = TRUE)
+
 ```
 
 ##Problem 3
 
 ```{r}
-
 ##Load and tidy accel dataset
 accel = read_csv(file = "/Users/weiranzhang/p8105_hw3_wz2506/accel_data.csv") %>%
   mutate(weekday_vs_weekend =
            ifelse(day %in% c("Saturnday","Sunday"), "Weekend", "Weekday"))
   
-
 ```
 
 ```{r}
-
 ##Total activity variable aggregate across minute
 sum = accel %>%
   mutate(Total = rowSums(accel[,4:1443])) %>%
   select(week, day_id, day, Total)
-
 
 ```
 
@@ -240,8 +240,6 @@ week5 = databyhour %>%
 
   ggplot() +
   geom_line(week1, mapping = aes(x = hour, y = activitycounts, color = day)) + geom_line(week2, mapping = aes(x = hour, y = activitycounts, color = day)) + geom_line(week3, mapping = aes(x = hour, y = activitycounts, color = day)) + geom_line(week4, mapping = aes(x = hour, y = activitycounts, color = day)) + geom_line(week5, mapping = aes(x = hour, y = activitycounts, color = day)) 
-
-
 
 ```
 
