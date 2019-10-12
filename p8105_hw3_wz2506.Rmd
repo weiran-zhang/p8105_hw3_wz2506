@@ -201,6 +201,18 @@ accel = read_csv(file = "/Users/weiranzhang/Downloads/p8105_hw3_wz2506/accel_dat
 
 ```{r}
 
+##Total activity variable aggregate across minute
+sum = accel %>%
+  mutate(Total = rowSums(accel[,4:1443])) %>%
+  select(week, day_id, day, Total)
+
+
+```
+
+```{r}
+
+
+
 
 ```
 
