@@ -2,7 +2,7 @@
 title: "p8105_hw3_wz2506"
 author: "Weiran Zhang"
 date: "10/11/2019"
-output: github_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -192,7 +192,7 @@ tidy_data %>%
 ```{r}
 
 ##Load and tidy accel dataset
-accel = read_csv(file = "/Users/weiranzhang/Downloads/p8105_hw3_wz2506/accel_data.csv") %>%
+accel = read_csv(file = "/Users/weiranzhang/p8105_hw3_wz2506/accel_data.csv") %>%
   mutate(weekday_vs_weekend =
            ifelse(day %in% c("Saturnday","Sunday"), "Weekend", "Weekday"))
   
