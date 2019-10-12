@@ -122,8 +122,9 @@ data("brfss_smart2010")
 ##Data cleaning following the instructions
 tidy_data = brfss_smart2010 %>%
   filter(Topic == "Overall Health", 
-         Response %in% c("Excellent", "Very good", "Good", "Fair", "Poor")) %>%
-  mutate(Response = as.factor(Response)) %>%
+         Response %in% c("Excellent", "Very good", "Good", "Fair", "Poor")) %>% ##focus only on "Overall Health" topic and the five response types
+  select(state = Locationabbr, location = Locationdesc, everything()) %>% ##change to reasonable names
+  mutate(Response = as.factor(Response)) %>% ##taking the response as factor variable
   mutate(Response = forcats::fct_relevel(Response, c("Excellent","Very Good","Good","Fair","Poor"))) %>%
   arrange(Response)
 ```
@@ -135,6 +136,7 @@ brfss_smart2010 %>%
          Response %in% c("Excellent", "Very good", "Good", "Fair", "Poor"), 
          Year == "2002") %>%
   group_by(Locationdesc) %>%
+  summarize(n = n()) %>%
   separate(Locationdesc, c("state","county"), sep = "-") %>%
   group_by(state) %>%
   summarize(n = n()) %>%
@@ -153,6 +155,7 @@ brfss_smart2010 %>%
          Response %in% c("Excellent", "Very good", "Good", "Fair", "Poor"), 
          Year == "2010") %>%
   group_by(Locationdesc) %>%
+  summarize(n = n()) %>%
   separate(Locationdesc, c("state","county"), sep = "-") %>%
   group_by(state) %>%
   summarize(n = n()) %>%
@@ -183,7 +186,7 @@ brfss_smart2010 %>%
 ##Two-panel plots showing distribution of data_value
 tidy_data %>%
   filter(Year %in% c(2006, 2010), 
-         Locationabbr == "NY") %>%
+         state == "NY") %>%
   ggplot(aes(x = Response, y = Data_value)) +
   geom_boxplot() + 
   facet_grid(~Year) +
@@ -200,6 +203,8 @@ accel = read_csv(file = "/Users/weiranzhang/p8105_hw3_wz2506/accel_data.csv") %>
            ifelse(day %in% c("Saturnday","Sunday"), "Weekend", "Weekday"))
   
 ```
+
+``
 
 ```{r}
 ##Total activity variable aggregate across minute
