@@ -210,7 +210,36 @@ sum = accel %>%
 ```
 
 ```{r}
+##single-panel plot of 24-hour activity vs. time
+databyhour = accel %>%
+  pivot_longer(
+    activity.1:activity.1440,
+    names_to = "minute",
+    names_prefix = "activity.",
+    values_to = "activity"
+  ) %>%
+  mutate(minute = as.numeric(minute),
+         hour = minute %/% 60) %>%
+  group_by(day, hour, week) %>%
+  summarize(activitycounts = sum(activity)) 
 
+week1 = databyhour %>%
+  filter(week == 1)
+
+week2 = databyhour %>%
+  filter(week == 2)
+
+week3 = databyhour %>%
+  filter(week == 3)
+
+week4 = databyhour %>%
+  filter(week == 4)
+
+week5 = databyhour %>%
+  filter(week == 5)
+
+  ggplot() +
+  geom_line(week1, mapping = aes(x = hour, y = activitycounts, color = day)) + geom_line(week2, mapping = aes(x = hour, y = activitycounts, color = day)) + geom_line(week3, mapping = aes(x = hour, y = activitycounts, color = day)) + geom_line(week4, mapping = aes(x = hour, y = activitycounts, color = day)) + geom_line(week5, mapping = aes(x = hour, y = activitycounts, color = day)) 
 
 
 
