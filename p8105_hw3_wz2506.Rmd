@@ -184,6 +184,8 @@ brfss_smart2010 %>%
 
 ```
 
+`From the plot, we can see that all states from 2002 to 2010 have the mean data value between 0 to 30, and the data are distributed relatively concentrated between 20 to 30 with few outliers. `
+
 ```{r}
 ##Two-panel plots showing distribution of data_value
 tidy_data %>%
