@@ -107,7 +107,7 @@ instacart %>%
 
 `So from the table of mean hour of order, we can see that Wednesday it tooks longer to order for both Coffee ice Cream and Pink Lady Apples. But the mean hours are all about between 11-15 hours. `
 
-`There are 15 variables in this instacart dataset and 1384617 observations in total. Key variables including aisle, aisle_id, product_name, order_dow, order_hour_of_hour.`
+`There are 15 variables in this instacart dataset and 1384617 observations in total. Key variables including aisle wich represents the products types aisle contains, aisle_id which are the id number of aisle, product_name which is the product name, order_dow whic are the day of a week items ordered, order_hour_of_day which are average number of hours ordered in a day.`
 
 ##Problem 2
 
